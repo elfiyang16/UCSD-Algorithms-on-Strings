@@ -10,8 +10,21 @@ import sys
 # node, and the keys are the letters on those edges, and the
 # values are the node IDs to which these edges lead.
 def build_trie(patterns):
-    tree = dict()
-    # write your code here
+    tree = dict()        
+    tree[0] = dict()
+    newNode = 1
+    for pattern in patterns:
+        currNode = 0
+        l = len(pattern)
+        for i in range(l):
+            currSymbol = pattern[i]
+            if currSymbol in tree[currNode]:
+                currNode = tree[currNode][currSymbol]
+            else:
+                tree[currNode][currSymbol] = newNode
+                tree[newNode] = dict()
+                currNode = newNode
+                newNode += 1                
     return tree
 
 
